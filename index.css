@@ -29,16 +29,23 @@
 }
 
 .date-group {
-    width: 5rem;
+   
 }
 .date-group__wrapper {
+    position: relative;
     display: flex;
     gap: 1rem;
     align-items: center;
 }
-.form-control {
+.form-control-date {
     color: white;
 }
+
+.date-text {
+    position: absolute;
+    left: 1rem;
+}
+
 input:focus {
     outline: none;
 }
@@ -53,6 +60,17 @@ input[type=date]:focus::-webkit-datetime-edit {
     color: rgb(255, 255, 255) !important;
 }
 
+/* input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+} */
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

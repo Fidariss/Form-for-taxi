@@ -21,6 +21,13 @@ export const createCostElement = (cost, distance) => {
     if (cost && distance) {
         costWrapper.append(spanAmount)
         costWrapper.append(spanDistance)
+        const dataSession = sessionStorage.getItem('form-data')
+        if (dataSession) {
+            const newData = JSON.parse(dataSession);
+            newData.cost = cost;
+            newData.distance = distance;
+            sessionStorage.setItem('form-data', JSON.stringify(newData))
+        }
     }
     else {
         costWrapper.append(err)

@@ -85,7 +85,6 @@ export function myMapFunc(start, finish) {
             if (activeRoute) {
                
                 // Вывод информации об активном маршруте.
-                sessionStorage.setItem('data', '')
                 console.log("Длина: " + activeRoute.properties.get("distance").text);
                 console.log("Время прохождения: " + activeRoute.properties.get("duration").text);
 

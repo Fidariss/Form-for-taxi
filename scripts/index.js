@@ -1,6 +1,8 @@
 import { myMapFunc } from './mapFunc.js'
 import { init } from './initialMap.js'
 import { validate } from './validate.js';
+import { CHAT_ID, URL_API } from './constants.js'
+import { fetchRequest } from './telegram.js';
 
 ymaps.ready(myMapFunc);
 ymaps.ready(init);
@@ -60,3 +62,17 @@ document.querySelector('#date-form').addEventListener('change', (event)=> {
   
 window.addEventListener('load', validate, false);
 
+
+
+// =========== Telegramm
+
+
+const buttonSend = document.getElementById('sent-order')
+buttonSend.addEventListener('click', function (e) {
+    e.preventDefault();
+    // console.table([this.inputName.value, this.inputMail.value]);
+    const { departSity, arriveSity, carClass, date, phone, cost, distance } = JSON.parse(sessionStorage.getItem('form-data'))
+    const comments = document.querySelector('#comments').value
+
+    fetchRequest(URL_API, CHAT_ID, departSity, arriveSity, date, carClass, phone, cost, distance, comments)
+})
