@@ -1,0 +1,63 @@
+.wrapper-form {
+    margin: 0 auto;
+    max-width: 400px
+}
+.wrapper-button-amount {
+    margin: 1rem 0;
+}
+.wrapper-map {
+    height: 10rem;
+    width: 100%;
+}
+
+.wrapper-cost {
+    margin: 0 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper-cost__err {
+    color: red;
+    font-weight: bold;
+}
+
+.spinner-border {
+    display: none;
+}
+
+.active-spinner {
+    display: inline-block;
+}
+
+.date-group {
+    width: 5rem;
+}
+.date-group__wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.form-control {
+    color: white;
+}
+input:focus {
+    outline: none;
+}
+input[type=date]:-webkit-datetime-edit {
+    color: rgb(255, 255, 255) !important;
+}
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+
+input[type=date]:focus::-webkit-datetime-edit {
+    color: rgb(255, 255, 255) !important;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
+}

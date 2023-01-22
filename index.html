@@ -1,51 +1,145 @@
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <title>Быстрый старт. Размещение интерактивной карты на странице</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=367ef200-93bd-452e-8fbb-7866973aa268&lang=ru_RU"
-        type="text/javascript">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
+    <head>
+        <title>Быстрый старт. Размещение интерактивной карты на странице</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script
+            src="https://api-maps.yandex.ru/2.1/?apikey=367ef200-93bd-452e-8fbb-7866973aa268&lang=ru_RU"
+            type="text/javascript">
         </script>
-    
 
-</head>
-<body>
-    <div id="map" style="width: 600px; height: 400px"></div>
-    <input type="text" id="suggest1">
 
-<script type="module" src="./scripts/index.js"></script>
+    </head>
+    <body>
+        <section class="wrapper-form">
+            <form class="needs-validation" id="form-for-calculation" novalidate>
+                <div class="form-group">
+                    <label for="departure-city" class="form-label">Город
+                        отправления</label>
+                    <input type="text" class="form-control"
+                        id="departure-city" value="" required>
+                    <div class="invalid-feedback">
+                        Введите город!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="arrival-city" class="form-label">Город прибытия</label>
+                    <input type="text" class="form-control"
+                        id="arrival-city" value="" required>
+                    <div class="invalid-feedback">
+                        Введите город!
+                    </div>
+                </div>
+                <div class="form-group date-group">
+                    <label for="date-form">Дата</label>
+                    <div class="date-group__wrapper">
+                        <span id="date-text">20/11/1989</span>
+                        <input type="date" class="form-control" id="date-form" placeholder="" required>
+                    </div>
+                        
+                    <div class="invalid-feedback">
+                        Введите дату!
+                    </div>
+                </div>
+                <div class="form-group"><label for="select-class">Класс
+                        автомобиля</label>
+                    <select id="select-class" class="form-control" required>
+                        <option selected disabled></option>
+                        <option type="standard">Стандарт</option>
+                        <option type="comfort">Комфорт</option>
+                        <option type="business">Бизнес</option>
+                        <option type="bus">Минивэн</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Выбирите класс автомобиля!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone-form">Номер телефона</label>
+                    <input type="number" minlength="5" class="form-control"
+                        id="phone-form" required>
+                    <div class="invalid-feedback">
+                        Введите номер телефона!
+                    </div>
+                </div>
 
-<script type="text/javascript">
+                <div class="wrapper-button-amount">
+                    <button type="submit" id="btn-cost-amount" class="btn
+                        btn-primary">Рассчитать
+                        стоимость
+                        <span id="btn-spinner" class="spinner-border spinner-border-sm"
+                            role="status" aria-hidden="true"></span>
+                    </button>
+
+                </div>
+
+
+            </form>
+
+            <div class="wrapper-cost" id="cost">
+
+            </div>
+
+
+            <div id="map" class="wrapper-map"></div>
+
+
+            <div class="form-group">
+                <label for="comments">Комментарий</label>
+                <textarea class="form-control" id="comments" rows="2"></textarea>
+            </div>
+            <div class="wrapper-button-amount">
+                <button class="btn btn-primary btn-block" id="sent-order">Отправить
+                    заявку на перевозку</button>
+
+            </div>
+        </section>
+
+        <script>
+    </script>
+        <script type="module" src="./scripts/index.js"></script>
+
+        <script type="text/javascript">
     // function myMapFunc(start, finish) {
-    //     var element = document.getElementById('map').firstChild
-    //     console.log(element)
+        //     var element = document.getElementById('map').firstChild
+        //     console.log(element)
     //     element && element.remove()
     //     var myMap = new ymaps.Map('map', {
-    //         center: [55.751574, 37.573856],
-    //         zoom: 9,
-    //         controls: ['routePanelControl']
-    //     });
-    //     // Получение ссылки на панель маршрутизации.
-    //     var control = myMap.controls.get('routePanelControl');
-    //     control.options.set({
-    //         visible: false,
-    //     });
-    //     // Определение местоположения пользователя.
-    //     var location = ymaps.geolocation.get();
-    //     // Метод geolocation.get() возвращает Promise, который
-    //     // будет разрешен коллекцией GeoObjectCollection.
-    //     // Ссылка на эту коллекцию будет доступна в поле res.geoObjects.
-
-
-    //     location.then(function (res) {
-
-    //         // Получение адреса местоположения пользователя.
-    //         var userTextLocation = typeof start == "string" ? start : res.geoObjects.get(0).properties.get('text');
-
-    //         control.routePanel.state.set({
-    //             // Флаг, запрещающий пользователям изменять
-    //             // адрес начальной точки в поле ввода.
+        //         center: [55.751574, 37.573856],
+        //         zoom: 9,
+        //         controls: ['routePanelControl']
+        //     });
+        //     // Получение ссылки на панель маршрутизации.
+        //     var control = myMap.controls.get('routePanelControl');
+        //     control.options.set({
+            //         visible: false,
+            //     });
+            //     // Определение местоположения пользователя.
+            //     var location = ymaps.geolocation.get();
+            //     // Метод geolocation.get() возвращает Promise, который
+            //     // будет разрешен коллекцией GeoObjectCollection.
+            //     // Ссылка на эту коллекцию будет доступна в поле res.geoObjects.
+            
+            
+            //     location.then(function (res) {
+                
+                //         // Получение адреса местоположения пользователя.
+                //         var userTextLocation = typeof start == "string" ? start : res.geoObjects.get(0).properties.get('text');
+                
+                //         control.routePanel.state.set({
+                    //             // Флаг, запрещающий пользователям изменять
+                    //             // адрес начальной точки в поле ввода.
     //             fromEnabled: false,
     //             // Флаг, запрещающий пользователям изменять
     //             // адрес конечной точки в поле ввода.
@@ -58,22 +152,22 @@
     //         });
     //     });
 
-        
+    
     //     // Получение ссылки на панель.
     //     var control = myMap.controls.get('routePanelControl');
-        
+    
     //     // Получение мультимаршрута.
     //     var multiRoutePromise = control.routePanel.getRouteAsync();
-        
-        
+    
+    
     //     multiRoutePromise.then(function (multiRoute) {
-    //         // Подписка на событие обновления мультимаршрута.
-    //         multiRoute.model.events.add('requestsuccess', function () {
-    //             // Получение ссылки на активный маршрут.
-    //             var activeRoute = multiRoute.getActiveRoute();
-    //             // Когда панель добавляется на карту, она
-    //             // создает маршрут с изначально пустой геометрией. 
-    //             // Только когда пользователь выберет начальную и конечную точки,
+        //         // Подписка на событие обновления мультимаршрута.
+        //         multiRoute.model.events.add('requestsuccess', function () {
+            //             // Получение ссылки на активный маршрут.
+            //             var activeRoute = multiRoute.getActiveRoute();
+            //             // Когда панель добавляется на карту, она
+            //             // создает маршрут с изначально пустой геометрией. 
+            //             // Только когда пользователь выберет начальную и конечную точки,
     //             // маршрут будет перестроен с непустой геометрией.
     //             // Поэтому для избежания ошибки нужно добавить проверку,
     //             // что маршрут не пустой.
@@ -84,38 +178,37 @@
     //             }
     //         });
     //     }, function (err) {
-    //         console.log(err);
-    //     });
-
-    // }
-    // var changeFunc = new myMapFunc().start;
-    // changeFunc.start
-    // ymaps.ready(myMapFunc);
+        //         console.log(err);
+        //     });
+        
+        // }
+        // var changeFunc = new myMapFunc().start;
+        // changeFunc.start
+        // ymaps.ready(myMapFunc);
     // myMapFunc().then(function (res) {
-
-    //         // Получение адреса местоположения пользователя.
-    //         var userTextLocation = 'Москва';
-
-    //         control.routePanel.state.set({
-    //             // Флаг, запрещающий пользователям изменять
-    //             // адрес начальной точки в поле ввода.
-    //             fromEnabled: false,
-    //             // Флаг, запрещающий пользователям изменять
-    //             // адрес конечной точки в поле ввода.
-    //             toEnabled: false,
-    //             // В качестве начальной точки маршрута будет установлено
-    //             // местоположение пользователя.
-    //             from: userTextLocation,
-    //             // Адрес конечной точки.
-    //             to: 'Минск'
-    //         });
-    //     });
-
-    // ymaps.ready(init);
-
-    
+        
+        //         // Получение адреса местоположения пользователя.
+        //         var userTextLocation = 'Москва';
+        
+        //         control.routePanel.state.set({
+            //             // Флаг, запрещающий пользователям изменять
+            //             // адрес начальной точки в поле ввода.
+            //             fromEnabled: false,
+            //             // Флаг, запрещающий пользователям изменять
+            //             // адрес конечной точки в поле ввода.
+            //             toEnabled: false,
+            //             // В качестве начальной точки маршрута будет установлено
+            //             // местоположение пользователя.
+            //             from: userTextLocation,
+            //             // Адрес конечной точки.
+            //             to: 'Минск'
+            //         });
+            //     });
+            
+            // ymaps.ready(init);
+            
+            
 </script>
-
-</body>
+    </body>
 
 </html>

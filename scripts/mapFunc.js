@@ -1,12 +1,28 @@
+import { calculateCost } from "./calculateCost.js";
+import { createCostElement } from "./createCostElement.js";
+
 export function myMapFunc(start, finish) {
+    const costBtnAmount = document.getElementById('btn-cost-amount')
+    const btnSpinner = document.querySelector('#btn-spinner')
+
+    const departInput = document.querySelector('#departure-city');
+    const arrivalInput = document.querySelector('#arrival-city');
+    if (start && finish) {
+        costBtnAmount.disabled = true;
+    
+        btnSpinner.classList.add('active-spinner')
+    }
+
+
+
     var element = document.getElementById('map').firstChild
-    console.log(element)
     element && element.remove()
     var myMap = new ymaps.Map('map', {
         center: [55.751574, 37.573856],
         zoom: 9,
         controls: ['routePanelControl']
     });
+
     // Получение ссылки на панель маршрутизации.
     var control = myMap.controls.get('routePanelControl');
     control.options.set({
@@ -21,9 +37,9 @@ export function myMapFunc(start, finish) {
 
     location.then(function (res) {
 
+
         // Получение адреса местоположения пользователя.
         var userTextLocation = typeof start == "string" ? start : res.geoObjects.get(0).properties.get('text');
-
         control.routePanel.state.set({
             // Флаг, запрещающий пользователям изменять
             // адрес начальной точки в поле ввода.
@@ -37,6 +53,8 @@ export function myMapFunc(start, finish) {
             // Адрес конечной точки.
             to: finish || ''
         });
+
+
     });
 
 
@@ -46,24 +64,57 @@ export function myMapFunc(start, finish) {
     // Получение мультимаршрута.
     var multiRoutePromise = control.routePanel.getRouteAsync();
 
+ 
+
 
     multiRoutePromise.then(function (multiRoute) {
         // Подписка на событие обновления мультимаршрута.
-        multiRoute.model.events.add('requestsuccess', function () {
+        multiRoute.model.events.add('requestsuccess', function (event) {
+            console.log(event.originalEvent.target);
             // Получение ссылки на активный маршрут.
             var activeRoute = multiRoute.getActiveRoute();
+            console.log(activeRoute);
+            
             // Когда панель добавляется на карту, она
             // создает маршрут с изначально пустой геометрией. 
             // Только когда пользователь выберет начальную и конечную точки,
             // маршрут будет перестроен с непустой геометрией.
             // Поэтому для избежания ошибки нужно добавить проверку,
             // что маршрут не пустой.
+            
             if (activeRoute) {
+               
                 // Вывод информации об активном маршруте.
+                sessionStorage.setItem('data', '')
                 console.log("Длина: " + activeRoute.properties.get("distance").text);
                 console.log("Время прохождения: " + activeRoute.properties.get("duration").text);
-            }
+
+                const carSelectElement = document.getElementById('select-class')
+                const indexOptionElement = carSelectElement.options.selectedIndex
+                const element = carSelectElement[indexOptionElement]
+                const carClass = element.getAttribute('type')
+                const cost = calculateCost(activeRoute.properties.get("distance").text, carClass)
+                console.log("Стоимость: " + cost);
+                createCostElement(cost, activeRoute.properties.get("distance").text)
+                
+            } 
+            costBtnAmount.disabled = false;
+            btnSpinner.classList.remove('active-spinner')
+           
+        }).add("requestfail", function (event) {
+            createCostElement()
+            costBtnAmount.disabled = false;
+            btnSpinner.classList.remove('active-spinner')
+
+            departInput.setCustomValidity(false)
+            arrivalInput.setCustomValidity(false)
+
+            console.log(event);
+            // console.log("Error: " + event.get("error").message);
         });
+        // multiRoute.model.events.add('err')
+
+
     }, function (err) {
         console.log(err);
     });

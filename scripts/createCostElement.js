@@ -1,0 +1,29 @@
+export const createCostElement = (cost, distance) => {
+    const costWrapper = document.querySelector('#cost')
+    costWrapper.innerHTML = ''
+
+    const spanAmount = document.createElement('span')
+    spanAmount.classList.add("wrapper-cost__cost")
+    spanAmount.innerText = `Стоимость вашей поездки будет составлять: ${cost} р`
+
+    const spanDistance = document.createElement('span')
+    spanDistance.classList.add("wrapper-cost__distance")
+    spanDistance.innerText = `Расстояние: ${distance}`
+
+    const err = document.createElement('span')
+    err.classList.add("wrapper-cost__err")
+    err.innerText = `Введен неверный адрес!`
+
+
+    console.log(cost && distance);
+    console.log(cost, distance);
+
+    if (cost && distance) {
+        costWrapper.append(spanAmount)
+        costWrapper.append(spanDistance)
+    }
+    else {
+        costWrapper.append(err)
+    }
+
+}
