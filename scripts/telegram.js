@@ -1,3 +1,5 @@
+import { CHAT_ID, URL_API } from './constants.js'
+
 export const fetchRequest = async (URL, ID, depart, arrive, date, classCar, phone, cost, distance, comments) => {
     const message = `<b>Откуда</b>: ${depart} 
     ${'\n'}<b>Куда</b >: ${arrive} 

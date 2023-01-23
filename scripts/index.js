@@ -1,8 +1,7 @@
 import { myMapFunc } from './mapFunc.js'
 import { init } from './initialMap.js'
 import { validate } from './validate.js';
-import { CHAT_ID, URL_API } from './constants.js'
-import { fetchRequest, listenerSentMessageTelegram } from './telegram.js';
+import { listenerSentMessageTelegram } from './telegram.js';
 
 ymaps.ready(myMapFunc);
 ymaps.ready(init);
