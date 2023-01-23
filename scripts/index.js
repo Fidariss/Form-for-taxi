@@ -2,7 +2,7 @@ import { myMapFunc } from './mapFunc.js'
 import { init } from './initialMap.js'
 import { validate } from './validate.js';
 import { CHAT_ID, URL_API } from './constants.js'
-import { fetchRequest } from './telegram.js';
+import { fetchRequest, listenerSentMessageTelegram } from './telegram.js';
 
 ymaps.ready(myMapFunc);
 ymaps.ready(init);
@@ -10,7 +10,7 @@ ymaps.ready(init);
 const form = document.getElementById('form-for-calculation')
 form.addEventListener("submit", (e) => {
     e.preventDefault()
-    
+
     const departInput = document.querySelector('#departure-city');
     const arrivalInput = document.querySelector('#arrival-city');
     departInput.setCustomValidity('')
@@ -44,7 +44,7 @@ form.addEventListener("submit", (e) => {
         myMapFunc(departSity, arriveSity)
 
 
-        
+
 
     }
 
@@ -52,27 +52,21 @@ form.addEventListener("submit", (e) => {
 
 })
 
-// const dataText = document.querySelector('#date-text')
-// dataText.textContent = new Date().toLocaleDateString()
+// ======================== Listener for send message ===============
 
-// document.querySelector('#date-form').addEventListener('change', (event)=> {
-//     const value = event.target.value.split('-');
-//     dataText.textContent = `${value[2]}/${value[1]}/${value[0]}`;
-// })
-  
-window.addEventListener('load', validate, false);
-
-
-
-// =========== Telegramm
-
-
-const buttonSend = document.getElementById('sent-order')
-buttonSend.addEventListener('click', function (e) {
-    e.preventDefault();
-    // console.table([this.inputName.value, this.inputMail.value]);
-    const { departSity, arriveSity, carClass, date, phone, cost, distance } = JSON.parse(sessionStorage.getItem('form-data'))
-    const comments = document.querySelector('#comments').value
-
-    fetchRequest(URL_API, CHAT_ID, departSity, arriveSity, date, carClass, phone, cost, distance, comments)
+window.addEventListener('load', () => { validate(); sessionStorage.removeItem('form-data') }, false);
+const inputPhone = document.querySelector('#phone-form')
+console.log(inputPhone);
+inputPhone.addEventListener('input', (e) => {
+    console.log(e.target.value.length);
+    if (e.target.value.length > 4 && sessionStorage.getItem('form-data')) {
+        document.querySelector('#sent-order').disabled = false;
+    } else {
+        document.querySelector('#sent-order').disabled = true;
+    }
 })
+
+
+
+
+listenerSentMessageTelegram()

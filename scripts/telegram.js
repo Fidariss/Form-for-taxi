@@ -26,6 +26,20 @@ export const fetchRequest = async (URL, ID, depart, arrive, date, classCar, phon
 }
 
 
+export const listenerSentMessageTelegram = () => {
+
+    const buttonSend = document.getElementById('sent-order')
+    buttonSend.addEventListener('click', function (e) {
+        e.preventDefault();
+        // console.table([this.inputName.value, this.inputMail.value]);
+        const { departSity, arriveSity, carClass, date, phone, cost, distance } = JSON.parse(sessionStorage.getItem('form-data'))
+        const comments = document.querySelector('#comments').value
+
+        fetchRequest(URL_API, CHAT_ID, departSity, arriveSity, date, carClass, phone, cost, distance, comments)
+    })
+}
+
+
 
 
 
