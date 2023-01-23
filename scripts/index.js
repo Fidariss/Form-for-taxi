@@ -52,13 +52,13 @@ form.addEventListener("submit", (e) => {
 
 })
 
-const dataText = document.querySelector('#date-text')
-dataText.textContent = new Date().toLocaleDateString()
+// const dataText = document.querySelector('#date-text')
+// dataText.textContent = new Date().toLocaleDateString()
 
-document.querySelector('#date-form').addEventListener('change', (event)=> {
-    const value = event.target.value.split('-');
-    dataText.textContent = `${value[2]}/${value[1]}/${value[0]}`;
-})
+// document.querySelector('#date-form').addEventListener('change', (event)=> {
+//     const value = event.target.value.split('-');
+//     dataText.textContent = `${value[2]}/${value[1]}/${value[0]}`;
+// })
   
 window.addEventListener('load', validate, false);
 

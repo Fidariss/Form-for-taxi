@@ -97,21 +97,14 @@ export function myMapFunc(start, finish) {
                 createCostElement(cost, activeRoute.properties.get("distance").text)
                 
             } 
-            costBtnAmount.disabled = false;
-            btnSpinner.classList.remove('active-spinner')
            
         }).add("requestfail", function (event) {
             createCostElement()
-            costBtnAmount.disabled = false;
-            btnSpinner.classList.remove('active-spinner')
-
             departInput.setCustomValidity(false)
             arrivalInput.setCustomValidity(false)
 
             console.log(event);
-            // console.log("Error: " + event.get("error").message);
         });
-        // multiRoute.model.events.add('err')
 
 
     }, function (err) {

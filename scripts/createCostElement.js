@@ -18,6 +18,11 @@ export const createCostElement = (cost, distance) => {
     console.log(cost && distance);
     console.log(cost, distance);
 
+    const costBtnAmount = document.getElementById('btn-cost-amount')
+    const btnSpinner = document.querySelector('#btn-spinner')
+    costBtnAmount.disabled = false;
+    btnSpinner.classList.remove('active-spinner')
+
     if (cost && distance) {
         costWrapper.append(spanAmount)
         costWrapper.append(spanDistance)
