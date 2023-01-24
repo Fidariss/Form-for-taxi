@@ -17,11 +17,11 @@
 /* .wrapper-cost {
     border-radius: 5rem;
     /* padding: 1rem 2rem; */
-background-color: #64cc6e;
+/* background-color: #64cc6e;
 display: flex;
 flex-direction: column;
 word-break: keep-all;
-}
+} */
 
 */ .wrapper-cost__cost {
     /* max-width: 200px; */
@@ -113,4 +113,16 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
     /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.message-about-send {
+    display: none;
+    color: #64cc6e;
+}
+.message-about-send.successfully {
+    display: block;
+}
+.message-about-send.err {
+    display: block;
+    color: red;
 }

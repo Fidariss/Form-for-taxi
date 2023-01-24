@@ -10,7 +10,6 @@ export const calculateCost = (distance, carClass) => {
         console.log(distance, carClass);
         const number = distance.slice(0, -3).split(',').join('.').split('').filter((item) => item.trim() !== '').join('');
         const result = (costs[`${carClass}`] * Number(number).toFixed(0));
-        // console.log(result);
         return result;
     } return costs[`${carClass}`];
 }

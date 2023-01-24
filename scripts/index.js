@@ -20,6 +20,7 @@ form.addEventListener("submit", (e) => {
         const departSity = document.getElementById('departure-city').value
         const arriveSity = document.getElementById('arrival-city').value
         const date = document.getElementById('date-form').value
+        const time = document.getElementById('time-form').value
 
 
         const carSelectElement = document.getElementById('select-class')
@@ -27,23 +28,20 @@ form.addEventListener("submit", (e) => {
         const element = carSelectElement[indexOptionElement]
         const carClass = element.getAttribute('type')
 
-        const phone = document.getElementById('phone-form').value
 
         const formData = {
             departSity: departSity,
             arriveSity: arriveSity,
             date: date,
-            carClass: carClass,
-            phone: phone
+            time:time,
+            carClass: carClass
+           
         }
         console.log(formData);
 
         sessionStorage.setItem('form-data', JSON.stringify(formData))
 
         myMapFunc(departSity, arriveSity)
-
-
-
 
     }
 

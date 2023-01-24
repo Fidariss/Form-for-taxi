@@ -19,10 +19,6 @@ export const createCostElement = (cost, distance) => {
 
     container.append(spanAmount)
     container.append(spanDistance)
-    // container.append(err)
-
-    // costWrapper.innerHTML(container)
-
 
     console.log(cost && distance);
     console.log(cost, distance);
