@@ -2,6 +2,9 @@ export const createCostElement = (cost, distance) => {
     const costWrapper = document.querySelector('#cost')
     costWrapper.innerHTML = ''
 
+    const container = document.createElement('div')
+    container.classList.add("container-cost-distance")
+
     const spanAmount = document.createElement('span')
     spanAmount.classList.add("wrapper-cost__cost")
     spanAmount.innerText = `Стоимость вашей поездки будет составлять: ${cost} р`
@@ -14,6 +17,12 @@ export const createCostElement = (cost, distance) => {
     err.classList.add("wrapper-cost__err")
     err.innerText = `Введен неверный адрес!`
 
+    container.append(spanAmount)
+    container.append(spanDistance)
+    // container.append(err)
+
+    // costWrapper.innerHTML(container)
+
 
     console.log(cost && distance);
     console.log(cost, distance);
@@ -24,8 +33,7 @@ export const createCostElement = (cost, distance) => {
     btnSpinner.classList.remove('active-spinner')
 
     if (cost && distance) {
-        costWrapper.append(spanAmount)
-        costWrapper.append(spanDistance)
+        costWrapper.append(container)
         const dataSession = sessionStorage.getItem('form-data')
         if (dataSession) {
             const newData = JSON.parse(dataSession);

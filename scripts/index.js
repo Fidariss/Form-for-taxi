@@ -55,13 +55,18 @@ form.addEventListener("submit", (e) => {
 
 window.addEventListener('load', () => { validate(); sessionStorage.removeItem('form-data') }, false);
 const inputPhone = document.querySelector('#phone-form')
+const checkPhone = document.querySelector('#check-phone')
 console.log(inputPhone);
 inputPhone.addEventListener('input', (e) => {
     console.log(e.target.value.length);
     if (e.target.value.length > 4 && sessionStorage.getItem('form-data')) {
         document.querySelector('#sent-order').disabled = false;
+        checkPhone.classList.remove('check-phone')
+        
     } else {
         document.querySelector('#sent-order').disabled = true;
+        checkPhone.classList.add('check-phone')
+
     }
 })
 
