@@ -1,9 +1,9 @@
-const costs = {
-    standard: 22,
-    comfort: 30,
-    business: 40,
-    bus: 40
-}
+// const costs = {
+//     standard: 22,
+//     comfort: 30,
+//     business: 40,
+//     bus: 40
+// }
 
 export const calculateCost = (distance, carClass) => {
     if (distance.includes('км')) {
