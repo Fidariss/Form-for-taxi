@@ -1,3 +1,4 @@
+// Стоимость перевозки
 // const costs = {
 //     standard: 22,
 //     comfort: 30,
