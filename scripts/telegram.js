@@ -47,7 +47,9 @@ export const listenerSentMessageTelegram = () => {
     const buttonSend = document.getElementById('sent-order')
     buttonSend.addEventListener('click', function (e) {
         e.preventDefault();
-        const { departSity, arriveSity, carClass, date, time, cost, distance } = JSON.parse(sessionStorage.getItem('form-data'))
+        const { departSity, arriveSity, carClass, cost, distance } = JSON.parse(sessionStorage.getItem('form-data'))
+        const date = document.getElementById('date-form').value
+        const time = document.querySelector('#time-form').value
         const phone = document.getElementById('phone-form').value
         const comments = document.querySelector('#comments').value
 

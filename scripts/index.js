@@ -6,8 +6,8 @@ import { listenerSentMessageTelegram } from './telegram.js';
 ymaps.ready(myMapFunc);
 ymaps.ready(init);
 
-const form = document.getElementById('form-for-calculation')
-form.addEventListener("submit", (e) => {
+const formCalc = document.getElementById('form-for-calculation')
+formCalc.addEventListener("submit", (e) => {
     e.preventDefault()
 
     const departInput = document.querySelector('#departure-city');
@@ -15,13 +15,10 @@ form.addEventListener("submit", (e) => {
     departInput.setCustomValidity('')
     arrivalInput.setCustomValidity('')
 
-    if (form.checkValidity()) {
+    if (formCalc.checkValidity()) {
         sessionStorage.removeItem('form-data')
         const departSity = document.getElementById('departure-city').value
         const arriveSity = document.getElementById('arrival-city').value
-        const date = document.getElementById('date-form').value
-        const time = document.getElementById('time-form').value
-
 
         const carSelectElement = document.getElementById('select-class')
         const indexOptionElement = carSelectElement.options.selectedIndex
@@ -32,10 +29,8 @@ form.addEventListener("submit", (e) => {
         const formData = {
             departSity: departSity,
             arriveSity: arriveSity,
-            date: date,
-            time:time,
             carClass: carClass
-           
+
         }
         console.log(formData);
 
@@ -51,24 +46,45 @@ form.addEventListener("submit", (e) => {
 
 // ======================== Listener for send message ===============
 
-window.addEventListener('load', () => { validate(); sessionStorage.removeItem('form-data') }, false);
-const inputPhone = document.querySelector('#phone-form')
-const checkPhone = document.querySelector('#check-phone')
-console.log(inputPhone);
-inputPhone.addEventListener('input', (e) => {
-    console.log(e.target.value.length);
-    if (e.target.value.length > 4 && sessionStorage.getItem('form-data')) {
-        document.querySelector('#sent-order').disabled = false;
-        checkPhone.classList.remove('check-phone')
-        
-    } else {
-        document.querySelector('#sent-order').disabled = true;
-        checkPhone.classList.add('check-phone')
+window.addEventListener('load', () => {
+    validate();
+    sessionStorage.removeItem('form-data')
+}, false);
 
+const sentForm = document.getElementById('form-for-sent')
+const checkPhone = document.querySelector('#check-phone')
+
+const inputPhone = document.querySelector('#phone-form')
+const checkDate = document.getElementById('date-form')
+const checkTime = document.querySelector('#time-form')
+
+
+const validationFunc = (e) => {
+    console.log(e.target.value.length);
+    if (e.target.value.length > 4) {
+        checkPhone.classList.remove('check-phone')
+        if (sessionStorage.getItem('form-data') && sentForm.checkValidity()
+        ) {
+            document.querySelector('#sent-order').disabled = false;
+        } else {
+            document.querySelector('#sent-order').disabled = true;
+        }
+    } else {
+
+        checkPhone.classList.add('check-phone')
     }
+}
+
+checkDate.addEventListener('input', (e) => {
+    validationFunc(e)
 })
 
+checkTime.addEventListener('input', (e) => {
+    validationFunc(e)
+})
 
-
+inputPhone.addEventListener('input', (e) => {
+    validationFunc(e)
+})
 
 listenerSentMessageTelegram()

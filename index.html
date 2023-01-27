@@ -1,119 +1,140 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="./index.css">
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
-<head>
-    <title>Быстрый старт. Размещение интерактивной карты на странице</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=44dfff89-4cec-4c24-b96d-b65d6c710912&lang=ru_RU"
-        type="text/javascript">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <head>
+        <title>Быстрый старт. Размещение интерактивной карты на странице</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script
+            src="https://api-maps.yandex.ru/2.1/?apikey=44dfff89-4cec-4c24-b96d-b65d6c710912&lang=ru_RU"
+            type="text/javascript">
         </script>
-</head>
+    </head>
 
-<body>
-    <section class="container-form">
-        <div class="wrapper-form">
-            <h4 class="wrapper-form__title">Узнайте стоимость перевозки</h3>
-            <form class="needs-validation" id="form-for-calculation" novalidate>
-                <div class="form-group">
-                    <label for="departure-city" class="form-label">Город
-                        отправления</label>
-                    <input type="text" class="form-control" id="departure-city" value="" required>
-                    <div class="invalid-feedback">
-                        Введите город!
+    <body>
+        <section class="container-form">
+            <div class="wrapper-form">
+                <h4 class="wrapper-form__title">Узнайте стоимость перевозки</h3>
+                <form class="needs-validation" id="form-for-calculation"
+                    novalidate>
+                    <div class="form-group">
+                        <label for="departure-city" class="form-label">Город
+                            отправления</label>
+                        <input type="text" class="form-control"
+                            id="departure-city" value="" required>
+                        <div class="invalid-feedback">
+                            Введите город!
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="arrival-city" class="form-label">Город
-                        прибытия</label>
-                    <input type="text" class="form-control" id="arrival-city" value="" required>
-                    <div class="invalid-feedback">
-                        Введите город!
+                    <div class="form-group">
+                        <label for="arrival-city" class="form-label">Город
+                            прибытия</label>
+                        <input type="text" class="form-control"
+                            id="arrival-city" value="" required>
+                        <div class="invalid-feedback">
+                            Введите город!
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="date">Дата</label>
-                    <div class="date-group__wrapper">
-                        <div class="input-group date" id="datepicker">
-                            <input type="text" class="form-control" id="date-form" required>
-                            <span class="input-group-append">
-                                <span class="input-group-text bg-white
+
+                    <div class="form-group">
+                        <label class="form-label" for="select-class">Класс
+                            автомобиля</label>
+                        <select id="select-class" class="form-control" required>
+                            <option selected disabled></option>
+                            <option type="standard">Стандарт</option>
+                            <option type="comfort">Комфорт</option>
+                            <option type="business">Бизнес</option>
+                            <option type="bus">Минивэн</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Выбирите класс автомобиля!
+                        </div>
+                    </div>
+                    <div class="wrapper-button-amount">
+                        <button type="submit" id="btn-cost-amount" class="btn
+                            btn-primary">Рассчитать
+                            стоимость
+                            <span id="btn-spinner" class="spinner-border
+                                spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </form>
+                <div class="wrapper-cost" id="cost"></div>
+                <div id="map" class="wrapper-map"></div>
+
+                <form class="needs-validation" id="form-for-sent" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="date">Дата</label>
+                        <div class="date-group__wrapper">
+                            <div class="input-group date" id="datepicker">
+                                <input type="text" class="form-control"
+                                    id="date-form" required>
+                                <span class="input-group-append">
+                                    <span class="input-group-text bg-white
                                         d-block">
-                                    <i class="fa fa-calendar"></i>
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
                                 </span>
-                            </span>
-                            <div class="invalid-feedback">
-                                Выберите дату!
+                                <div class="invalid-feedback">
+                                    Выберите дату!
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="phone-form">Время выезда</label>
-                    <input type="time" class="form-control" id="time-form" required>
-                    <div class="invalid-feedback">
-                        Укажите время выезда!
+                    <div class="form-group">
+                        <label class="form-label" for="phone-form">Время выезда</label>
+                        <input type="time" class="form-control" id="time-form"
+                            required>
+                        <div class="invalid-feedback">
+                            Укажите время выезда!
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="select-class">Класс
-                        автомобиля</label>
-                    <select id="select-class" class="form-control" required>
-                        <option selected disabled></option>
-                        <option type="standard">Стандарт</option>
-                        <option type="comfort">Комфорт</option>
-                        <option type="business">Бизнес</option>
-                        <option type="bus">Минивэн</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Выбирите класс автомобиля!
+                    <div class="form-group">
+                        <label class="form-label" for="phone-form">Номер
+                            телефона</label>
+                        <input type="number" minlength="5" class="form-control"
+                            id="phone-form" required>
+                        <div class="invalid-feedback" id="check-phone">
+                            Не менее 5 цифр!
+                        </div>
                     </div>
-                </div>
-                <div class="wrapper-button-amount">
-                    <button type="submit" id="btn-cost-amount" class="btn
-                            btn-primary">Рассчитать
-                        стоимость
-                        <span id="btn-spinner" class="spinner-border
-                                spinner-border-sm" role="status" aria-hidden="true"></span>
-                    </button>
-                </div>
-            </form>
-            <div class="wrapper-cost" id="cost"></div>
-            <div id="map" class="wrapper-map"></div>
-            <div class="form-group">
-                <label class="form-label" for="phone-form">Номер телефона</label>
-                <input type="number" minlength="5" class="form-control" id="phone-form">
-                <div class="invalid-feedback" id="check-phone">
-                    Не менее 5 цифр!
-                </div>
-            </div>
-           
-            <div class="form-group">
-                <label class="form-label" for="comments">Комментарий</label>
-                <textarea class="form-control" id="comments" rows="2"></textarea>
-            </div>
-            <div class="wrapper-button-amount">
-                <div class="message-about-send" id="message-about-send"></div>
-                <button class="btn btn-primary btn-block" id="sent-order" disabled>Отправить
-                    заявку на перевозку</button>
-            </div>
-        </div>
 
-    </section>
-    <script type="text/javascript" src="./scripts/datePicker.js"></script>
-    <script type="module" src="./scripts/index.js"></script>
-</body>
+                    <div class="form-group">
+                        <label class="form-label" for="comments">Комментарий</label>
+                        <textarea class="form-control" id="comments" rows="2"></textarea>
+                    </div>
+                    <div class="wrapper-button-amount">
+                        <div class="message-about-send" id="message-about-send"></div>
+                        <button type="submit" class="btn btn-primary btn-block"
+                            id="sent-order" disabled>Отправить
+                            заявку на перевозку</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <script type="text/javascript" src="./scripts/datePicker.js"></script>
+        <script type="module" src="./scripts/index.js"></script>
+    </body>
 
 </html>
