@@ -1,10 +1,10 @@
 // Стоимость перевозки
-const costs = {
-    standard: [25,22,20],
-    comfort: 30,
-    business: 40,
-    bus: 40
-}
+// const costs = {
+//     standard: [25,22,20],
+//     comfort: 30,
+//     business: 40,
+//     bus: 40
+// }
 
 export const calculateCost = (distance, carClass) => {
     if (distance.includes('км')) {
