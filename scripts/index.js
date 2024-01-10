@@ -1,5 +1,5 @@
 import { myMapFunc } from './mapFunc.js'
-import { init } from './initialMap.js'
+import { init } from './initialMap.js?v3'
 import { validate } from './validate.js';
 import { listenerSentMessageTelegram } from './telegram.js';
 
@@ -32,6 +32,7 @@ formCalc.addEventListener("submit", (e) => {
             carClass: carClass
 
         }
+        console.log(formData);
 
         sessionStorage.setItem('form-data', JSON.stringify(formData))
 
@@ -59,6 +60,7 @@ const checkTime = document.querySelector('#time-form')
 
 
 const validationFunc = (e) => {
+    console.log(e.target.value.length);
     if (e.target.value.length > 4) {
         checkPhone.classList.remove('check-phone')
         if (sessionStorage.getItem('form-data') && sentForm.checkValidity()
@@ -85,4 +87,4 @@ inputPhone.addEventListener('input', (e) => {
     validationFunc(e)
 })
 
-// listenerSentMessageTelegram()
+listenerSentMessageTelegram()
