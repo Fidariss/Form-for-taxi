@@ -20,9 +20,6 @@ export const createCostElement = (cost, distance) => {
     container.append(spanAmount)
     container.append(spanDistance)
 
-    console.log(cost && distance);
-    console.log(cost, distance);
-
     const costBtnAmount = document.getElementById('btn-cost-amount')
     const btnSpinner = document.querySelector('#btn-spinner')
     costBtnAmount.disabled = false;
