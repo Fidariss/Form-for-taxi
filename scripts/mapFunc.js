@@ -70,10 +70,8 @@ export function myMapFunc(start, finish) {
     multiRoutePromise.then(function (multiRoute) {
         // Подписка на событие обновления мультимаршрута.
         multiRoute.model.events.add('requestsuccess', function (event) {
-            console.log(event.originalEvent.target);
             // Получение ссылки на активный маршрут.
             var activeRoute = multiRoute.getActiveRoute();
-            console.log(activeRoute);
             
             // Когда панель добавляется на карту, она
             // создает маршрут с изначально пустой геометрией. 
@@ -85,15 +83,12 @@ export function myMapFunc(start, finish) {
             if (activeRoute) {
                
                 // Вывод информации об активном маршруте.
-                console.log("Длина: " + activeRoute.properties.get("distance").text);
-                console.log("Время прохождения: " + activeRoute.properties.get("duration").text);
 
                 const carSelectElement = document.getElementById('select-class')
                 const indexOptionElement = carSelectElement.options.selectedIndex
                 const element = carSelectElement[indexOptionElement]
                 const carClass = element.getAttribute('type')
                 const cost = calculateCost(activeRoute.properties.get("distance").text, carClass)
-                console.log("Стоимость: " + cost);
                 createCostElement(cost, activeRoute.properties.get("distance").text)
                 
             } 
@@ -102,13 +97,11 @@ export function myMapFunc(start, finish) {
             createCostElement()
             departInput.setCustomValidity(false)
             arrivalInput.setCustomValidity(false)
-
-            console.log(event);
         });
 
 
     }, function (err) {
-        console.log(err);
+        console.error(err);
     });
 
 }
